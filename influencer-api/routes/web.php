@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{any}', function () {
-    return view('app'); // Your Blade template that loads the Vite frontend
-})->where('any', '.*');
+
+Route::get('/youtube', function () {
+    return view('youtube');
+});
+Route::post('/youtube', [AuthController::class, 'fetchChannelDetails'])->name('youtube.fetch');
+Route::get('/facebook', [AuthController::class, 'getUserDetails']);
